@@ -1,0 +1,149 @@
+<!-- 褰曞叆椤惧淇℃伅ECM -->
+
+<div style="margin:10px 0px 0px 50px">
+    <div  style="width:1600px;height:600px">
+      <form id="ECMform" method="post" >  
+        <div style="margin:30px 0px 0px 100px;font-size: 40px">
+            <div style="margin-bottom: 30px">
+              编号:<input  name="cno" id="eccno" 
+              class="easyui-textbox"
+              style="width: 200px;height:40px"
+              data-options="prompt:'少于10位'"></input>
+              &nbsp;&nbsp;
+              姓名:<input  name="cname"  id="eccname" 
+              class="easyui-textbox"
+              style="width: 200px;height:40px"
+              data-options="prompt:'不超过8个字符'"></input>
+              &nbsp;&nbsp;
+              性别:<select  class="easyui-combobox" name="csex" 
+              data-options="panelHeight:'auto'" 
+              style="width: 40px;height:40px">   
+                <option value="男">男</option>   
+                <option value="女">女</option> 
+              </select>  
+            </div>
+            <div style="margin-bottom: 20px">
+              年龄:<input  name="cage" id="eccage" 
+              class="easyui-textbox"
+              style="width: 200px;height:40px"
+              data-options="prompt:'不超过四个字符'"></input>
+              &nbsp;&nbsp;
+              电话:<input  name="cphone" id="eccphone" 
+              class="easyui-textbox" 
+              style="width: 200px;height:40px"
+              data-options="prompt:'不多于20位'"></input>
+              &nbsp;&nbsp;
+              代办人编号:<input  name="ano" id="ecano" 
+              class="easyui-combobox"
+              style="width: 150px;height:40px"
+              data-options="url:'../Agency/GetAllAgency',prompt:'请选择',
+              valueField:'ano',textField:'ano',panelHeight:'300px'"></input><!-- 远程加载列表的数据 -->
+            </div>
+            <div style="margin-bottom: 20px">
+                购买日期:<input  name="cdate" id="eccdate" 
+                class="easyui-datebox"
+                style="width: 120px;height:40px"
+                data-options="prompt:'请选择'"></input>
+                &nbsp;&nbsp;
+                药品编号:<input  name="mno" id="ecmno" 
+                class="easyui-combobox" 
+                style="width: 200px;height:40px"
+                data-options="url:'../Medicine/GetAllMedicine',prompt:'请选择',
+                valueField:'mno',textField:'mno',panelHeight:'300px'"></input><!-- 远程加载列表的数据 -->
+            </div>
+            <div style="margin-bottom: 30px">
+               顾客地址:<input  name="caddress" id="eccaddress" 
+                class="easyui-textbox" 
+                style="width: 1150px;height:40px"
+                data-options="prompt:'不要超过50位'"></input></td>
+            </div>
+            <div style="margin-bottom: 30px;">
+                症状:<input  name="csymptom" id="eccsymptom" 
+                multiline="true"
+                class="easyui-textbox" 
+                style="width: 500px;height:150px"
+                data-options="prompt:'不要超过50位'" >
+                </input>&nbsp;
+                备注:<input  name="cremark" id="eccremark" 
+                multiline="true"
+                class="easyui-textbox" 
+                style="width: 500px;height:150px"
+                data-options="prompt:'不要超过50位'" >
+                </input>
+            </div>
+          </div>
+        </form>
+
+    <a  href="javascript:ECMclickEntry()"
+        class="easyui-linkbutton"
+        style="width: 150px;height: 40px;
+            margin-left: 35%" 
+        data-options="iconCls:'icon-user_add'"><h1>添加</h1>
+    </a>
+  </div>
+</div>
+<!-- 娴嬭瘯瀹屾垚 -->
+<script type="text/javascript">
+  function ECMclickEntry() {
+
+  
+    if($("#eccno").val().length>10||$("#eccno").val().length==0) {
+        $.messager.alert('鎻愮ず', '缂栧彿涓嶈兘闀垮害澶т簬10涓斾笉涓虹┖'); 
+        return ;
+    }
+    if($("#eccname").val().length>8) {
+        $.messager.alert('鎻愮ず', '濮撳悕涓嶈兘闀垮害澶т簬8'); 
+        return ;
+    }
+    if($("#eccphone").val().length>20) {
+        $.messager.alert('鎻愮ず', '鐢佃瘽涓嶈兘闀垮害澶т簬20'); 
+        return ;
+    }
+    if($("#eccage").val().length>4) {
+        $.messager.alert('鎻愮ず', '骞撮緞涓嶈兘闀垮害澶т簬4'); 
+        return ;
+    }
+    
+    if($("#eccdate").combo("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('鎻愮ず', '鏃ユ湡涓嶈兘涓虹┖'); 
+        return ;
+    }
+    if($("#ecano").combobox("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('鎻愮ず', '缁忓姙浜轰笉鑳戒负绌�'); 
+        return ;
+    }
+    if($("#ecmno").combobox("getText").length==0) {
+    	// alert($("#eccdate").combo("getText"));
+        $.messager.alert('鎻愮ず', '宸茶喘鑽搧涓嶈兘涓虹┖'); 
+        return ;
+    }
+    
+    if($("#eccaddress").val().length>50) {
+        $.messager.alert('鎻愮ず', '鍦板潃涓嶈兘闀垮害澶т簬50'); 
+        return ;
+    }
+    if($("#eccsymptom").val().length>50) {
+        $.messager.alert('鎻愮ず', '鐥囩姸涓嶈兘闀垮害澶т簬50'); 
+        return ;
+    }
+     if($("#eccremark").val().length>50) {
+        $.messager.alert('鎻愮ず', '澶囨敞涓嶈兘闀垮害澶т簬50'); 
+        return ;
+    }
+              $('#ECMform').form({    
+                url:'../Client/SaveClient',    
+                onSubmit: function(){    
+                    // do some check    
+                    // return false to prevent submit;    
+                },    
+                success:function(data){    
+                    // alert("aSome");
+                    $.messager.alert('鎻愮ず', data); 
+                }    
+            });    
+            // submit the form    
+            $('#ECMform').submit();  
+}
+</script>
